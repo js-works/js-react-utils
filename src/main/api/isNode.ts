@@ -1,5 +1,5 @@
 // external imports
-import React, { createRef } from 'react'
+import React from 'react'
 
 // internal imports
 import setJsSpecValidator from '../internal/helpers/setJsSpecValidator'

@@ -1,6 +1,8 @@
+import { ComponentType } from 'react'
+
 // === exports =======================================================
 
-export default convertValidation
+export default addComponentMeta
 
 // === types =========================================================
 
@@ -11,6 +13,23 @@ type PropTypesMeta = {
     string,
     (props: Props, propName: string, componentName: string) => null | Error
   >
+}
+
+// === addComponentMeta ==============================================
+
+function addComponentMeta<P>(
+  component: ComponentType<P>,
+
+  params: {
+    name: string
+    validation?: (props: P) => true | false | null | Error
+  }
+) {
+  component.displayName = params.name
+
+  if (params.validation) {
+    Object.assign(component, convertValidation(params.validation))
+  }
 }
 
 // === convertValidation =============================================

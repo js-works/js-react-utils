@@ -1,4 +1,4 @@
-export { default as convertValidation } from './api/convertValidation'
+export { default as addComponentMeta } from './api/addComponentMeta'
 export { default as isElement } from './api/isElement'
 export { default as isElementOfType } from './api/isElementOfType'
 export { default as isNode } from './api/isNode'

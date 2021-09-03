@@ -1,6 +1,6 @@
-import React, { Ref } from 'react'
+import React from 'react'
 import * as Spec from 'js-spec/validators'
-import { convertValidation } from '../main/js-react-utils'
+import { addComponentMeta } from '../main/js-react-utils'
 
 const { useCallback, useEffect, useState } = React
 
@@ -8,7 +8,7 @@ export default {
   title: 'Counters'
 }
 
-// === SimpleCounter1 ================================================
+// === SimpleCounter =================================================
 
 type SimpleCounterProps = {
   initialValue?: number
@@ -24,7 +24,7 @@ const validateCounterProps = Spec.checkProps({
 
 function Counter({ initialValue = 0, label = 'Counter' }: SimpleCounterProps) {
   const [count, setCount] = useState(initialValue)
-  const onIncrement = useCallback(() => setCount(count + 1), null)
+  const onIncrement = useCallback(() => setCount((it) => it + 1), [])
 
   useEffect(() => {
     console.log('Component has been mounted')
@@ -43,6 +43,9 @@ function Counter({ initialValue = 0, label = 'Counter' }: SimpleCounterProps) {
   )
 }
 
-Object.assign(Counter, convertValidation(validateCounterProps))
+addComponentMeta(Counter, {
+  name: 'Counter',
+  validation: validateCounterProps
+})
 
 export const simpleCounter = () => <Counter initialValue={100} />

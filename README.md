@@ -1,13 +1,13 @@
 # js-react-utils
 
-A bundle of opinionated utility functions to simplify component development with React.
+A bundle of opinionated utility functions for React.
 Currently the main purpose is to provide an alternative way to validate component props.
 
 ## Usage example
 
 ```tsx
 import React, { useCallback, useState } from 'react'
-import { convertValidation } from 'js-react-utils'
+import { addComponentMeta } from 'js-react-utils'
 import * as Spec from 'js-spec/validators' // 3rd-party validation library
 
 type CounterProps = {
@@ -39,11 +39,10 @@ const validateCounterProps = Spec.checkProps({
   }
 })
 
-Object.assign(Counter, {
-  displayName: 'Counter',
-
-  ...(process.env.NODE_ENV === ('development' as string) &&
-    convertValidation(validateCounterProps))
+addComponentMeta(Counter, {
+  name: 'Counter',
+  validation:
+    process.env.NODE_ENV === ('development' as string) && validateCounterProps
 })
 ```
 
