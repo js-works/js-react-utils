@@ -22,7 +22,7 @@ function addComponentMeta<P>(
 
   params: {
     name: string
-    validation?: (props: P) => true | false | null | Error
+    validation?: ((props: P) => boolean | null | Error) | null | false
   }
 ) {
   component.displayName = params.name
