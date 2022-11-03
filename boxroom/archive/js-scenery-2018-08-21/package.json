@@ -20,7 +20,7 @@
     "material-design-icons": "^3.0.1",
     "material-icons": "^0.1.0",
     "mdi": "^2.0.46",
-    "mocha": "^2.3.4",
+    "mocha": "^10.1.0",
     "ngzip": "^1.1.3",
     "npm-font-open-sans": "^1.0.3",
     "popper.js": "^1.12.6",
